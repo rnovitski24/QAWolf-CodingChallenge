@@ -1,4 +1,5 @@
 // EDIT THIS FILE TO COMPLETE ASSIGNMENT QUESTION 1
+// Testing terminal custom git commands
 const { chromium } = require("playwright");
 
 async function sortHackerNewsArticles() {
