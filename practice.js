@@ -30,7 +30,7 @@ async function scrapeWikipediaFeaturedArticle() {
     const page = await context.newPage();
 
     // 4. Navigate to website
-    await page.goto("https://www.wikipedia.org", { waitUntil: 'domcontentloaded' });
+    await page.goto('https://www.wikipedia.org', { waitUntil: 'domcontentloaded' });
 
     // 5. Locate 'English' button
     // Test to make sure it has it
