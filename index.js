@@ -21,9 +21,27 @@ const { stdin: input, stdout: output } = require('node:process');
 
 // Helper functions for sortNewest
 
-
+/**
+ * Helper function that traverses Hacker News page, gets each entry and stores in a currEntry object.
+ * 
+ * @param {import('playwright').Page} page - Page object passed from UI.
+ * @param {number} limit - Specified entry limit(default=100).
+ */
 async function extractEntriesFromPage(page, limit) {
 
+  // Create array to store each entry object on page
+  const entries = [];
+
+  /**
+   * IMPLEMENTATION PLAN:
+   * - Select all story rows on page(contains rank, title)
+   * - For each story row:
+   *    - Get next sibling row containing link and time
+   *    - Create entry object and push to array
+   */
+  
+
+  // Entry object structure
   const currEntry = {
     rank: Number(entry.rank),
     title: entry.title,
