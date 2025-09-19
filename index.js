@@ -13,11 +13,19 @@
 
 //------------------------------------------ REQUIREMENTS ------------------------------------------ 
 
-const { chromium } = require('playwright');
-const readline = require('readline/promises');
-const { stdin: input, stdout: output } = require('node:process');
+const { chromium, firefox, webkit } = require('playwright');
 
-//------------------------------------------ HELPER FUNCTIONS ------------------------------------------ 
+// Imports to be used in UI
+const readline = require('readline/promises');
+const { stdin: input, stdout: output } = require('node:process'); 
+
+//------------------------------------------ USER-CALLED FUNCTIONS ------------------------------------------
+/**
+ * User-called functions include:
+ *  - sortNewest(page, { limit = 100, verbose = false })
+ *  - showPastDate(page, { limit, date })
+ *  
+ */ 
 
 /**
  * Goes to https://news.ycombinator.com/newest and validates that
@@ -89,26 +97,63 @@ async function showPastDate(page, { limit, date }) {
 }
 
 
+//------------------------------------------ HELPER FUNCTIONS ------------------------------------------ 
 
 /**
- * COMMAND PARSING 
+ * Helper function used by the UI to parse user's input for execution.
  * 
  * @param line User-inputted command line.
  * @returns { cmd, args }
  */
 function parseCommand(line) {
+  // Split user input into normalized token array
   const tokens = (line || '').trim().split(/\s+/).filter(Boolean);
-  const [cmdRaw, ...rest] = tokens;
-  const cmd = (cmdRaw || '').toLowerCase();
-  const args = {};
+  const [first, ...rest] = tokens;
 
+  // Separates command from flags
+  const cmd = (first || '').toLowerCase();
+
+  // Loop to store normalized parsed flags
+  const args = {};
   for (const token of rest) {
-    if (/^--[^=]+=.*/.test(token)) {
+    if (token.startsWith('--') && token.includes('=')) {  // OR regex '/^--[^=]+=.*/.test(token)' for exact format
       const [k, v] = token.slice(2).split('=');
       args[k] = v;
     }
   }
   return { cmd, args };
+}
+
+/**
+ * Helper function used by the UI to store browser setup logic.
+ * 
+ * @param line User-inputted command(y/n).
+ * @returns { mode, speed }
+ */
+function setupBrowser(line) {
+  // Default values
+  let mode = false;
+  let speed = 250;
+  try {
+    switch(line) {
+      case 'y': {
+        mode = false;
+        speed = 250;
+      }
+      case 'n': {
+        mode = true;
+        speed = 0;
+      }
+      default: {
+        console.log('Undefined input; Defaulting to visuals on...');
+        mode = false;
+        speed = 250;
+      }
+    }
+  } catch(err) {
+    console.error('Command failed: ', err || err?.message);
+  }
+  return { mode, speed };
 }
 
 //------------------------------------------ MAIN UI FUNCTION ------------------------------------------ 
@@ -120,11 +165,16 @@ function parseCommand(line) {
    * @author Ryan Novitski
    */
 (async () => {
-  // Setup
+  // Create interface
   const rl = readline.createInterface({ input, output });
+
+  // Setup browser preferences
+  /* Choose browser(Chromium, Firefox, Webkit)? */
+  const setup = await rl.question('Would you like to see script run in browser?[y/n]').toLowerCase();
+  const { mode, speed } = setupBrowser(setup);
   const browser = await chromium.launch({
-      headless: false,
-      slowMo: 250
+    headless: mode,
+    slowMo: speed
   });
   const context = await browser.newContext();
   const prompt = async () => rl.question('Commands:\n  newest --limit=[1-999] --verbose=false\n  past --limit=[1-999] --date=YYYY-MM-DD\n  help\n  exit\n> ');
