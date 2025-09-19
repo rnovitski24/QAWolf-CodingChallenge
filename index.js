@@ -20,21 +20,57 @@ const { stdin: input, stdout: output } = require('node:process');
 //------------------------------------------ USER-CALLED FUNCTIONS ------------------------------------------
 
 // Helper functions for sortNewest
-function extractEntriesFromPage(page, limit) {}
+
+
+async function extractEntriesFromPage(page, limit) {
+
+  const currEntry = {
+    rank: Number(entry.rank),
+    title: entry.title,
+    link: entry.link,
+    time: new Date(entry.time)
+  };
+
+}
+
+/**
+ * Helper function used by sortNewest containing time-validation logic.
+ * 
+ * @function validateOrder
+ * @param {Object} prev 
+ * @param {Object} curr 
+ * @returns 
+ */
 function validateOrder(prev, curr) {
-  if (prevEntry) {
-      if (currEntry.rank !== (prevEntry.rank + 1)) {
-        console.warn(`Rank jump at ${currEntry.title}: got ${currEntry.rank}, expected ${prevEntry.rank + 1}`);
+  if (prev) {
+      if (curr.rank !== (prev.rank + 1)) {
+        console.warn(`Rank jump at ${curr.title}: got ${curr.rank}, expected ${prev.rank + 1}`);
       }
 
       // Each subsequent entry should be older than the previous
-      if (currEntry.time > prevEntry.time) {
-        console.warn(`Chronological Error: ${currEntry.title} (${currEntry.time}) is newer than ${prevEntry.title}`);
+      if (curr.time > prev.time) {
+        console.warn(`Chronological Error: ${curr.title} (${curr.time}) is newer than ${prev.title} (${prev.time}).`);
+        return false;
+      } else {
+        console.log(`Entry Valid: ${curr.title} (${curr.time}) is older than ${prev.title} (${prev.time}).`);
+        return true;
       }
     }
 }
-function goToNextPage(page) {}
-function validate(page, limit, { verbose }) {}
+
+/**
+ * 
+ * Navigates to end of Hacker News 'newest' page and gets next page of entries.
+ * 
+ * @async
+ * @function goToNextPage
+ * @param {import('playwright').Page} page - Page object passed from UI.
+ * @param {boolean} verbose - Boolean regarding the printout of specified entries.
+ * @returns {boolean} Returns true if next page reached successfully.
+ */
+async function goToNextPage(page, verbose) {
+  
+}
 
 /**
  * Goes to https://news.ycombinator.com/newest and validates that
@@ -42,51 +78,71 @@ function validate(page, limit, { verbose }) {}
  * will output results requested by assignment.
  * 
  * @async
- * @param page Page passed from UI.
- * @param limit How many entries to grab(max 999).
- * @param verbose Boolean regarding the printout of specified entries.
+ * @function sortNewest
+ * @param {import('playwright').Page} page - Page object passed from UI.
+ * @param {number} limit - How many entries to grab(max 999).
+ * @param {boolean} verbose - Boolean regarding the printout of specified entries.
+ * @returns {Promise<void>} Returns when validation process is complete.
  */
 async function sortNewest(page, { limit = 100, verbose = false }) { // no printout by default
   // Target URL
   await page.goto('https://news.ycombinator.com/newest', { waitUntil: 'domcontentloaded' });  // Added wait condition for quicker runtime
   console.log(`Validating newest ${limit} articles for chronology...`);
 
-  // Variables to track progress
+  // Initialize setup
   let prevEntry = null;
-  let validated = 0;
+  let processed = 0;
+  let invalidCount = 0;   // tracks number of incorrect chronological entries
+  let finalValid = true;  // used for final output
 
-  while (validated < limit) {
-    // Specify number of entries needed on current page
-    if (limit >= 30) {
-      const entries = extractEntriesFromPage(page, 30);
-    } else {
-      const entries = extractEntriesFromPage(page, limit);
+  while (processed < limit) {
+    // Specify number of entries needed on current page(max 30)
+    const remaining = limit - processed;
+    let entryCount = 30;
+    if (remaining < 30) {
+      entryCount = remaining;
     }
+    
+    const entries = await extractEntriesFromPage(page, entryCount);
+    if (verbose) console.log(`Extracted Entries: ${entries}`);
 
     for (const entry of entries) {
-      const currEntry = {
-        rank: Number(entry.rank),
-        title: entry.title,
-        link: entry.link,
-        time: new Date(entry.time)
-      };
+      if (prevEntry !== null) {
+        const isValid = validateOrder(prevEntry, entry);  // returns boolean
+        if (verbose) console.log(`${entry.title} Validation result: ${isValid}`);
 
-      if (prevEntry) {
-        const valid = validateOrder(prevEntry, currEntry);  // returns boolean
-        if (valid) {
-          validated++;
-        } else {
-          console.log("INVALID ORDER");
+        if (!isValid) {
+          finalValid = false;
+          invalidCount++;
+          // Potentially add additional verbose logging
         }
-
       }
-      prevEntry = currEntry;
+      processed++;
+      prevEntry = entry;
+
+      if (processed >= limit) break;  // safety check each entry
     }
-    if (validated < limit) {
-      goToNextPage(page);
+
+    if (processed >= limit) break;  // exit while loop if completed
+    
+    // If more to process, go to next page
+    const success = await goToNextPage(page);
+    if (!success) {
+      console.warn("Next page not found before hitting limit; Exiting process early.");
+      finalValid = false;
+      break;
     }
   }
+
+  // Final output
+  console.log(`Process complete. Validated ${processed} of ${limit} entries with ${invalidCount} chronological errors.`);
+  if (finalValid) {
+    console.log(`All ${limit} entries are sorted newest to oldest!`);
+  } else {
+    console.log(`${invalidCount} entries are not correctly sorted.`);
+  }
 }
+
   /** TODO
    *  1. Helper func Loop thru first 30 entries collecting title, link and date
    *  COMPLETE 2. Check date against previous entry and ensure chronological ordering
