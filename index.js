@@ -1,54 +1,28 @@
 // EDIT THIS FILE TO COMPLETE ASSIGNMENT QUESTION 1
 
-/**
- * BRAINSTORMING IDEAS
+/** GLOBAL TODO
+ *    1. Write out sortNewest function logic
+ *    2. Write out showPastDate function logic
+ *    3. Add error handling to parseCommand
+ *    4. Add more robust, customized error handling to main function
+ *      - Ensure all variables are correctly typed before passing to other functions
+ *    5. Make file Doc header
+ *    6. Add in ability to write/save separate .txt file containing relevant data
  * 
- * NOTES ON HACKERNEWS POSTS:
- * - Page shows 30 results at a time
- * - Each entry is formatted as follows:
- *  - Top line: [Entry #] [Entry Title] ([Website URL])
- *  - Bottom line: [#] point(s) by [Poster Username] [# hours/minutes] ago
- * - Looks like each post has exact time posted in metadata under 'span.age'
- * - Easiest way to handle is probably to iterate through top 100 articles and
- *    comparing each entry's metadata post time with the previous.  Should only 
- *    need to remember last entry's time since they should all be chronological
- * - Can only do 30 entries at a time so that must be included in implementation of loop
- * - Traverse to next 30 entries via getByRole 'More' link
- *    
- * WAYS TO IMPROVE:
- * - Main question output options:
- *    - 1. No site output(simple T/F)
- *    - 2. Console read-only output(console.log())
- *    - 3. Write/save a file containing specified links
- * - Create a dynamic UI:
- *    - 1. Allows any specified number of articles to be used(with a set maximum of 999)
- *      - Trivial implementation once base UI complete
- *    - 2. Can choose a specific date to go back to  *** FIRST DAY OF POSTED ARTICLES === 2/19/2007!!! ***
- *      - NOTE: No longer perfectly chronological; ranking algorithm 'divides points by a power of the time since story was submitted'
- *      - I can do this 1 of 2 ways:
- *        - 1. Manually click through https://news.ycombinator.com/front links until correct date specified( awful, inconsistent worst case time complexity )
- *        - 2. Change URL to specified date(format is "...com/front?day=YYYY-MM-DD")
- *    - 3. Adjusts UTC time to whatever zone local machine is set to
- *        - Most likely trivial, need to look into JS handling of this
- *          - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
- *            - I believe correct object should be Date.getTimezoneOffset() (returns difference bet. current timezone and UTC in mins)
- *    - 4. MAYBE can sort by either newest->oldest OR number of points
- *      - This one is a maybe, have to see how badly it would affect time complexity
- *      - If full sort is unreasonable, can always passively keep track of entry with highest points
  */
-
 
 //------------------------------------------ REQUIREMENTS ------------------------------------------ 
 
-const { chromium } = require("playwright");
+const { chromium } = require('playwright');
 const readline = require('readline/promises');
 const { stdin: input, stdout: output } = require('node:process');
 
 //------------------------------------------ HELPER FUNCTIONS ------------------------------------------ 
 
 /**
- * Goes to https://news.ycombinator.com/newest and validates that exactly
- * the first 100 articles are sorted from newest to oldest.
+ * Goes to https://news.ycombinator.com/newest and validates that
+ * the specified articles are sorted from newest to oldest. Default command
+ * will output results requested by assignment.
  * 
  * @async
  * @param page Page passed from UI.
@@ -58,15 +32,42 @@ const { stdin: input, stdout: output } = require('node:process');
 async function sortNewest(page, { limit = 100, verbose = false }) { // no printout by default
   // Target URL
   await page.goto('https://news.ycombinator.com/newest', { waitUntil: 'domcontentloaded' });  // Added wait condition for quicker runtime
+  console.log(`Validating newest ${limit} articles for chronology...`);
+
+  let prevEntry = null;
+
+  for (const entry of entries) {
+    const currEntry = {
+      rank: Number(entry.rank),
+      title: entry.title,
+      link: entry.link,
+      time: new Date(entry.time)
+    };
+
+    if (prevEntry) {
+      if (currEntry.rank !== (prevEntry.rank + 1)) {
+        console.warn(`Rank jump at ${currEntry.title}: got ${currEntry.rank}, expected ${prevEntry.rank + 1}`);
+      }
+
+      // Each subsequent entry should be older than the previous
+      if (currEntry.time > prevEntry.time) {
+        console.warn(`Chronological Error: ${currEntry.title} (${currEntry.time}) is newer than ${prevEntry.title}`);
+      }
+    }
+    prevEntry = currEntry;
+  }
   /** TODO
    *  1. Helper func Loop thru first 30 entries collecting title, link and date
-   *  2. Check date against previous entry and ensure chronological ordering
+   *  COMPLETE 2. Check date against previous entry and ensure chronological ordering
    *  3. Continue looping every 30 entries until specified limit reached
    *  4. Print relevant data if applicable
    */
+
+
+
+
+
 }
-
-
 
 /**
  * Goes to https://news.ycombinator.com/front and grabs top 30 articles
@@ -78,8 +79,8 @@ async function sortNewest(page, { limit = 100, verbose = false }) { // no printo
  */
 async function showPastDate(page, { limit, date }) {
   // Target URL
-  const url = 'https://news.ycombinator.com/front?date=' + date;
-  await page.goto(url, { waitUntil: 'domcontentloaded' });
+  await page.goto(`https://news.ycombinator.com/front?date=${date}`, { waitUntil: 'domcontentloaded' });
+  console.log(`Showing ${limit} past articles on ${date}...`);
 
   /** TODO
    * 1. Use same helper function as above to collect specified limit of info
@@ -126,15 +127,7 @@ function parseCommand(line) {
       slowMo: 250
   });
   const context = await browser.newContext();
-  const prompt = async () => rl.question(
-`Commands:
-  newest --limit=[1-999] --verbose=false
-  past --limit=[1-999] --date=YYYY-MM-DD 
-  help
-  exit
-
-> `
-  );
+  const prompt = async () => rl.question('Commands:\n  newest --limit=[1-999] --verbose=false\n  past --limit=[1-999] --date=YYYY-MM-DD\n  help\n  exit\n> ');
 
   // Begin UI
   try {
@@ -144,7 +137,7 @@ function parseCommand(line) {
 
       /** COMMAND LOGIC */
       if (!cmd || cmd === 'help') {
-        console.log("Available commands(case-sensitive): \nnewest --limit=[1-999] --verbose=false \npast --limit=[1-999] --date=YYYY-MM-DD \nhelp \nexit");
+        console.log('Available commands(case-sensitive): newest --limit=[1-999] --verbose=false \npast --limit=[1-999] --date=YYYY-MM-DD \nhelp \nexit');
         continue;
       }
       if (cmd === 'exit' || cmd === 'quit' || cmd === 'q') break;
@@ -173,7 +166,7 @@ function parseCommand(line) {
             console.log('Unknown command. Type "help" for options.');
         }        
       } catch(err) {
-        console.error('Command failed: ', err);
+        console.error('Command failed: ', err || err?.message);
       } finally {
         await page.close();
       }
@@ -181,6 +174,7 @@ function parseCommand(line) {
   } finally {
     await context.close();
     await browser.close();
-    console.log("Browser closed!");
+    rl.close();
+    console.log('Browser closed!');
   }
 })();
