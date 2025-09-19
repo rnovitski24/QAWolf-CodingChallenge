@@ -3,9 +3,7 @@
 /** GLOBAL TODO
  *    1. Write out sortNewest function logic
  *    2. Write out showPastDate function logic
- *    3. Add error handling to parseCommand
- *    4. Add more robust, customized error handling to main function
- *      - Ensure all variables are correctly typed before passing to other functions
+ *    3. Add input error handling to parseCommand
  *    5. Make file Doc header
  *    6. Add in ability to write/save separate .txt file containing relevant data
  * 
@@ -20,12 +18,23 @@ const readline = require('readline/promises');
 const { stdin: input, stdout: output } = require('node:process'); 
 
 //------------------------------------------ USER-CALLED FUNCTIONS ------------------------------------------
-/**
- * User-called functions include:
- *  - sortNewest(page, { limit = 100, verbose = false })
- *  - showPastDate(page, { limit, date })
- *  
- */ 
+
+// Helper functions for sortNewest
+function extractEntriesFromPage(page, limit) {}
+function validateOrder(prev, curr) {
+  if (prevEntry) {
+      if (currEntry.rank !== (prevEntry.rank + 1)) {
+        console.warn(`Rank jump at ${currEntry.title}: got ${currEntry.rank}, expected ${prevEntry.rank + 1}`);
+      }
+
+      // Each subsequent entry should be older than the previous
+      if (currEntry.time > prevEntry.time) {
+        console.warn(`Chronological Error: ${currEntry.title} (${currEntry.time}) is newer than ${prevEntry.title}`);
+      }
+    }
+}
+function goToNextPage(page) {}
+function validate(page, limit, { verbose }) {}
 
 /**
  * Goes to https://news.ycombinator.com/newest and validates that
@@ -42,28 +51,42 @@ async function sortNewest(page, { limit = 100, verbose = false }) { // no printo
   await page.goto('https://news.ycombinator.com/newest', { waitUntil: 'domcontentloaded' });  // Added wait condition for quicker runtime
   console.log(`Validating newest ${limit} articles for chronology...`);
 
+  // Variables to track progress
   let prevEntry = null;
+  let validated = 0;
 
-  for (const entry of entries) {
-    const currEntry = {
-      rank: Number(entry.rank),
-      title: entry.title,
-      link: entry.link,
-      time: new Date(entry.time)
-    };
-
-    if (prevEntry) {
-      if (currEntry.rank !== (prevEntry.rank + 1)) {
-        console.warn(`Rank jump at ${currEntry.title}: got ${currEntry.rank}, expected ${prevEntry.rank + 1}`);
-      }
-
-      // Each subsequent entry should be older than the previous
-      if (currEntry.time > prevEntry.time) {
-        console.warn(`Chronological Error: ${currEntry.title} (${currEntry.time}) is newer than ${prevEntry.title}`);
-      }
+  while (validated < limit) {
+    // Specify number of entries needed on current page
+    if (limit >= 30) {
+      const entries = extractEntriesFromPage(page, 30);
+    } else {
+      const entries = extractEntriesFromPage(page, limit);
     }
-    prevEntry = currEntry;
+
+    for (const entry of entries) {
+      const currEntry = {
+        rank: Number(entry.rank),
+        title: entry.title,
+        link: entry.link,
+        time: new Date(entry.time)
+      };
+
+      if (prevEntry) {
+        const valid = validateOrder(prevEntry, currEntry);  // returns boolean
+        if (valid) {
+          validated++;
+        } else {
+          console.log("INVALID ORDER");
+        }
+
+      }
+      prevEntry = currEntry;
+    }
+    if (validated < limit) {
+      goToNextPage(page);
+    }
   }
+}
   /** TODO
    *  1. Helper func Loop thru first 30 entries collecting title, link and date
    *  COMPLETE 2. Check date against previous entry and ensure chronological ordering
@@ -72,10 +95,6 @@ async function sortNewest(page, { limit = 100, verbose = false }) { // no printo
    */
 
 
-
-
-
-}
 
 /**
  * Goes to https://news.ycombinator.com/front and grabs top 30 articles
