@@ -20,7 +20,7 @@ const fs = require('node:fs/promises'); // for I/O
  * @property {Date|null} time   - Parsed timestamp from metadata (null if missing).
  */
 
-//------------------------------------------ USER-CALLED HELPER FUNCTIONS ------------------------------------------ 
+//------------------------------------------ USER-BASED HELPER FUNCTIONS ------------------------------------------ 
 
 /**
  * Helper function that traverses Hacker News page, gets each entry and stores in a currEntry object.
@@ -241,9 +241,9 @@ async function sortNewest(page, limit = 100, verbose = false) { // no printout b
  * 
  * @async
  * @param {import('playwright').Page} page} - Page passed from UI.
- * @param {number} [limit=50] - How many entries to grab(max 100).
- * @param {string} date - Date being accessed.
- * @param {boolean} verbose - Boolean regarding printout of log.
+ * @param {number} [limit=50]               - How many entries to grab(max 100).
+ * @param {string} date                     - Date being accessed.
+ * @param {boolean} verbose                 - Boolean regarding printout of log.
  */
 async function showPastDate(page, limit=50, date, verbose) {
   // Target URL
@@ -386,11 +386,12 @@ function setupBrowser(line) {
  * IMPORTANT: SOME EDGE CASE DATES MAY STILL NOT BE COVERED WITH CURRENT IMPLEMENTATION
  *    - i.e. Specifying 31st day of month with 30 days may cause error
  * 
- * @param {string} date - Date to validate
- * @returns {boolean} 
+ * @param {string} date   - Date to validate
+ * @returns {boolean}
  */
 function valiDate(date) {
     // Parse inputted date and validate its scope
+    if (!date) return false;
     const dateList = date.split('-');
     const year = Number(dateList[0]);
     if (!year || year < 2007 || year > 2024) {
@@ -434,7 +435,7 @@ function valiDate(date) {
   });
 
   const context = await browser.newContext();
-  const prompt = async () => rl.question('Commands:\n  newest --limit=[1-999] --verbose=false\n  past --limit=[1-100] --date=YYYY-MM-DD --verbose=false\n  help\n  exit\n> ');
+  const prompt = async () => rl.question('Commands:\n  newest --limit=[1-999] --verbose=false\n  past --limit=[1-200] --date=YYYY-MM-DD --verbose=false\n  help\n  clear\n  exit\n> ');
 
   // Begin UI
   try {
@@ -444,7 +445,11 @@ function valiDate(date) {
 
       /** COMMAND LOGIC */
       if (!cmd || cmd === 'help') {
-        console.log('Available commands(case-sensitive): newest --limit=[1-999] --verbose=false\n past --limit=[1-100] --date=YYYY-MM-DD --verbose=false\n help\n exit');
+        console.log('          newest: Validates that specified articles are in chronological order.\n          past: Writes out specified data.');
+        continue;
+      }
+      if (cmd === 'clear') {
+        console.clear();
         continue;
       }
       if (cmd === 'exit' || cmd === 'quit' || cmd === 'q') break;
@@ -469,7 +474,7 @@ function valiDate(date) {
           case 'past': {
             let pastLimit = 50;
             let pastDate = '2020-01-01';  // arbitrary default date; earliest date 2/19/2007
-            if (args.limit && args.limit >= 1 && args.limit <= 100) {
+            if (args.limit && args.limit >= 1 && args.limit <= 200) {
               pastLimit = args.limit;
               console.log(`Limit set to ${args.limit}`);
             } else {
