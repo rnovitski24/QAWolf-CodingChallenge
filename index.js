@@ -247,7 +247,7 @@ async function sortNewest(page, limit = 100, verbose = false) { // no printout b
  */
 async function showPastDate(page, limit=50, date, verbose) {
   // Target URL
-  await page.goto(`https://news.ycombinator.com/front?date=${date}`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`https://news.ycombinator.com/front?day=${date}`, { waitUntil: 'domcontentloaded' });
   console.log(`Showing ${limit} past articles on ${date}...`);
 
   const rl = readline.createInterface({ input, output });
@@ -273,6 +273,11 @@ async function showPastDate(page, limit=50, date, verbose) {
       if (processed >= limit) break;  // exit while loop if completed
     }
     if (processed >= limit) break;
+
+    // Usually means ran out of articles for the day
+    if (entries.length < entryCount) {
+      if (verbose) console.log(`Maximum articles reached for the requested day (${processed})`);
+    }  
     // If more to process, go to next page
     if (verbose) {
       console.log(`${processed} of ${limit} entries processed.`);
@@ -286,7 +291,7 @@ async function showPastDate(page, limit=50, date, verbose) {
   }
 
   // Final output
-  console.log(`Process complete. Validated ${processed} of ${limit} entries.`);
+  console.log(`Process complete. Validated ${processed} of ${limit} requested entries.`);
   const response = await rl.question(`Please confirm if you would like to write out data[y/n]: `);
   try {
     switch(response.toLowerCase()) {
