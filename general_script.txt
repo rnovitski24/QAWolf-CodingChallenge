@@ -1,9 +1,0 @@
-LOOM VIDEO GENERAL SCRIPT
-
-1) Why do you want to work for QA Wolf?
-- 
-
-
-2) What should I show in the script?
-- First walkthrough entire file lightly describing each aspect, then go deeper into sortNewest before running code.
-   a. 

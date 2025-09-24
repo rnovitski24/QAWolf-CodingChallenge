@@ -1,0 +1,100 @@
+1. Why Sync? - https://replicated.wiki/blog/cloud.html
+2. Could JavaScript have synchronous await? - https://2ality.com/2025/03/sync-await.html
+3. Show HN: Parkiet – Fine-tune a large TTS for any language under $100 - https://github.com/pevers/parkiet
+4. You didn't see it coming - https://aishwaryagoel.com/you-didnt-see-it-coming/
+5. Show HN: Tool for SEO research, 30 day calendar, publishing and more - https://www.hovers.ai/
+6. The Importance of Slack - https://henko.net/blog/the-importance-of-slack/
+7. NSF-funded project explores how nanoplastics are transmitted to offspring - https://www.binghamton.edu/news/story/5789/future-generations-nsf-funded-project-explores-how-nanoplastics-are-transmitted-to-offspring
+8. Microsoft claims 3 fold chip cooling performance increase with microfluidics - https://news.microsoft.com/source/features/innovation/microfluidics-liquid-cooling-ai-chips/
+9. Chasing the Gulf Dream - https://www.dealflowiq.com/p/chasing-the-gulf-dream
+10. P=NP Demonstration Solves Traveling Salesman – Cryptography and Logistics Impact - https://medium.com/@m.p.165.g.l/the-solution-p-np-bdaec93d997e
+11. Robot Bartender - https://sites.google.com/view/robot-bartender/home
+12. How many valid JSON strings are there? - https://qntm.org/jsoncount
+13. Ruby Newbie: Supporting a new generation of rubynewbies - https://www.rubynewbie.org/
+14. Elon Musk's Father Accused of Child Sexual Abuse - https://www.nytimes.com/2025/09/23/world/africa/elon-musk-father-errol-child-abuse.html
+15. Mercedes-AMG Boss: Axial Flux Motors Will Come to More Cars - https://www.roadandtrack.com/news/a65189534/mercedes-amg-axial-flux-motors-future-cars/
+16. Show HN: Inferencer – Run and deeply control local AI models (macOS release) - https://inferencer.com/
+17. Tether CEO confirms major capital raise at a reported $500B valuation - https://www.cnbc.com/2025/09/23/tether-reportedly-seeks-lofty-500-billion-valuation-in-capital-raise-.html
+18. What Technically Happened at Chernobyl [video] - https://www.youtube.com/watch?v=YRPuO1RhbKo
+19. Build in Public on Easy Mode - https://wepost.ai/
+20. An Unusual Way to End Up with a Whole Lot of Gold - https://www.theatlantic.com/science/archive/2025/08/alchemy-gold-nuclear-fusion-marathon/683811/
+21. Claude Code is still ahead (see x) - https://twitter.com/josh_bickett/status/1970715071442715129
+22. Neovate Code Is Open Sourced - https://neovateai.dev/en/blog/neovate-code-is-open-sourced/
+23. Why social media is a Bummer (2018) - https://www.theguardian.com/technology/2018/may/27/jaron-lanier-six-reasons-why-social-media-is-a-bummer
+24. OpenFake: An Open Dataset and Platform Toward Large-Scale Deepfake Detection - https://arxiv.org/abs/2509.09495
+25. DoShare Personal Cloud Is Stable - https://getcloud.doshare.me/
+26. I built a 'Jarvis' to stop constantly switching Chrome tabs - https://concon.pro/
+27. How You Search the Internet Can Reinforce Your Beliefs–Without You Realizing It - https://www.scientificamerican.com/article/the-way-people-search-the-internet-can-fuel-echo-chambers/
+28. Apple Intelligence via CLI - https://github.com/prateekjain24/clipdrop
+29. Skeletons from 'green Sahara' offer genetic peek at a lost human population - https://www.science.org/content/article/skeletons-green-sahara-offer-genetic-peek-lost-human-population
+30. The Complete Guide to Dev Containers in Ruby on Rails - https://www.rorvswild.com/blog/2025/dev-containers-rails
+31. Show HN: Website mocks you for buying stupid shit, while buying stupid shit - https://legend.rip/
+32. Why Don't Liquids Splash in a Vacuum? [video] - https://www.youtube.com/watch?v=aXTcYa7u12k
+33. End-to-End API Client Testing: From RSwag to 360 Verified Code Examples - https://docspring.com/blog/posts/end-to-end-api-client-testing-from-rswag-to-360-verified-code-examples/
+34. Bystander effect - https://en.wikipedia.org/wiki/Bystander_effect
+35. ChainCred: Verify Academic Credentials on Ethereum with One QR Scan - https://github.com/achaljhawar/chaincred
+36. Scientists discover new dinosaur in Argentina with crocodile bone in mouth - https://news.sky.com/story/scientists-discover-new-dinosaur-in-argentina-with-crocodile-bone-in-mouth-13436844
+37. Solution to scrape 100 Search Results on Google - https://serpapi.com/blog/solution-to-scrape-100-search-results-on-google-google-fast-light-api/
+38. OpenAI Codex Deep Dive - https://www.washingtonpost.com/world/2024/10/05/israel-mossad-hezbollah-pagers-nasrallah/
+39. I made a deterministic π-driven algorithm that solves Partition in O(log n) - https://osf.io/mubnv/
+40. How to Solve Hard Problems - https://sharif.io/solving-hard-problems
+41. Defer and Errdefer in Rust - https://strongly-typed-thoughts.net/blog/rust-defer-errdefer.md
+42. The Hardware Knowledge That Every Programmer Should Know - https://needoneapp.medium.com/the-hardware-knowledge-that-every-programmer-should-know-f62cf4ba8bdc
+43. The Beauty of Programming - https://www.brynmawr.edu/inside/academic-information/departments-programs/computer-science/beauty-programming
+44. Unity photon collection from NV centers with hybrid nanoantennas - https://www.researchgate.net/publication/395580471_Approaching_unity_photon_collection_from_NV_centers_via_ultra-precise_positioning_of_nanodiamonds_in_hybrid_nanoantennas
+45. Apple Pulls the Savant from Its Release Schedule - https://www.vulture.com/article/apple-pulls-the-savant-from-release-schedule.html
+46. OpenPET: An Open Source and Flexible Electronics System for Radiotracer Imaging - https://ieeexplore.ieee.org/abstract/document/5571007
+47. Data Viz: Mapping Model Performance on Reasoning vs. Honesty Benchmarks - https://claude.ai/public/artifacts/068899b8-19fc-4927-8561-736a075c5018
+48. The self-trivialisation of software development - https://stefvanwijchen.com/the-self-trivialisation-of-software-development/
+49. Ask HN: How Is Everyone Feeling? - item?id=45356314
+50. An AI Training Environment That Runs Any Retro Game [video] - https://www.youtube.com/watch?v=4zk-RcWuIOM
+51. MCP-server-fuzzer: fuzzing tool for MCP servers - item?id=45356278
+52. Postgres' Original Project Goals: The Creators Nailed It - https://www.crunchydata.com/blog/the-postgres-project-original-goals-and-how-the-creators-totally-nailed-it
+53. ToolJet repositions as AI no-code internal tool builder - https://github.com/ToolJet/ToolJet/discussions/14002
+54. DE25-Nano FPGA Development and Education Board with ARM HPS and 2GB RAM - https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=1384
+55. Tech CEOs Are Using AI to Inflate Their Stocks [video] - https://www.youtube.com/watch?v=T7oJsuoGl5s
+56. Greatest irony of the AI age: Humans hired to clean AI slop - https://www.sify.com/ai-analytics/greatest-irony-of-the-ai-age-humans-being-increasingly-hired-to-clean-ai-slop/
+57. Live Nation CEO Says Concerts Are 'Underpriced.' Are They? - https://www.rollingstone.com/music/music-news/live-nationceo-concerts-aunderpriced-are-they-1235432347/
+58. Free, strong Password and Passphrase Generator for online security - https://www.scambare.com/p/password-generator.html
+59. Show HN: Nan0.art – AI image generation without the prompt engineering hassle - https://nan0.art
+60. The Little Book of llm.c – friendly explaining llm.c in plain English - https://github.com/little-book-of/llm.c
+61. What happens when junior design jobs disappear? - https://www.itsnicethat.com/features/welcome-to-the-entry-level-void-light-and-shade-digital-220925
+62. AI Cover Letter Generator – Free Professional Cover Letters - https://ai-coverletter-generator.com/
+63. Dashbullet – Build and talk to your internal tools - https://dashbullet.plust.click/
+64. The Meaning of Nostalgia (1971) - https://time.com/archive/6814695/time-essay-the-meaning-of-nostalgia/
+65. China to launch K-Visa for global talent - https://www.business-standard.com/immigration/china-to-launch-k-visa-for-global-talent-as-us-slaps-100-000-h-1b-fee-125092300264_1.html
+66. I made a real-time transcription WebSocket API - https://livestt.netlify.app/
+67. In Depth Look at GitHub Funding Phishing Scams - https://jimmysong.io/en/blog/github-gitcoin-fund-phishing-2025/
+68. An OCaml driver for Timeplus Proton timeseries streaming database - https://github.com/mfreeman451/proton-ocaml-driver
+69. Should Neovim support transitive plugin dependencies? - https://sink.io/jmk/neovim-plugin-deps/
+70. Deep Hanging Out (1998) - https://www.nybooks.com/articles/1998/10/22/deep-hanging-out/
+71. The Rabbit Hole of Building a Filesystem Watcher - https://amandeepsp.github.io/blog/fs-watcher/
+72. Peter Thiel Wants Everyone to Think More About the Antichrist - https://www.wsj.com/tech/peter-thiel-antichrist-lectures-dd28c876
+73. Study finds caffeine increases task persistence under pressure - https://www.psypost.org/study-finds-caffeine-increases-task-persistence-under-pressure/
+74. SpessaSynth: A SoundFont2-based synth written in vanilla JavaScript - https://github.com/spessasus/SpessaSynth
+75. AI SEO Is LLMBO - https://www.juicylinks.ai
+76. New study shows plants and animals emit a visible light that expires at death - https://pubs.acs.org/doi/10.1021/acs.jpclett.4c03546
+77. Crazy pitch: Engineers on the job hunt: pivot, become recruiter make $200k-$300k - item?id=45355934
+78. ReviewPro SaaS would appreciate feedback - https://reviewpro-production.up.railway.app/
+79. Kansas sues social media app Snapchat - https://kansasreflector.com/2025/09/23/kansas-sues-social-media-app-snapchat-for-harming-teenagers-mental-health-and-well-being/
+80. Jaguar Land Rover hack 'has cost 30k cars and threatens supply chain' - https://www.thetimes.com/uk/transport/article/jaguar-land-rover-hack-has-cost-30000-cars-and-threatens-supply-chain-qttb3sb0n
+81. Launching the x402 Foundation with Coinbase, and support for x402 transactions - https://blog.cloudflare.com/x402/
+82. France's Mistral AI plans expansion into Canada - https://www.theglobeandmail.com/business/article-france-mistral-ai-expansion-canada-cohere-openai/
+83. Show HN: Clipboards.pro – A simple clipboard manager I built out of frustration - https://clipboards.pro/
+84. Zig Allocators Explained (2024) - https://dayvster.com/blog/zig-allocators-explained/
+85. America's top companies keep talking about AI – but can't explain the upsides - https://www.ft.com/content/e93e56df-dd9b-40c1-b77a-dba1ca01e473
+86. Just Let Me Select Text - https://aartaka.me/select-text.html
+87. Show HN: I built an instant AI prompt library with one-click image generation - https://nanobananaprompthub.com
+88. The Hustle [video] - https://www.youtube.com/watch?v=_o7qjN3KF8U
+89. How We Unified API Tests, SDKs, and Docs into One Workflow - https://docspring.com/blog/posts/how-we-unified-api-tests-sdks-and-docs-into-one-workflow/
+90. Glowing plasma created by a high speed jet of water [video] - https://www.youtube.com/watch?v=_vTq8oGpqwM
+91. Show HN: Gradle-less APK builds on Android - https://github.com/Junaid-Ibrahim/Hello-Nothing
+92. What Happens to Artists' Studios After They Die? - https://www.nytimes.com/2025/09/22/t-magazine/artist-studio-legacy-posthumous.html
+93. Billboard.js 3.17.0: New Axis Customization, Label Styling and Image Labels - https://netil.medium.com/billboard-js-3-17-0-new-axis-customization-label-styling-image-labels-1be0f0a906f4
+94. Project Mohole - https://en.wikipedia.org/wiki/Project_Mohole
+95. LLMs are strangely-shaped tools - https://near.blog/llms-are-strangely-shaped-tools/
+96. 2025 DORA AI-assisted software development report - https://cloud.google.com/resources/content/2025-dora-ai-assisted-software-development-report
+97. Scientist behind Trump's Tylenol claims was paid $150K to give evidence - https://www.thetimes.com/us/american-politics/article/autism-scientist-tesitify-andrea-baccarelli-havard-aceraminophen-paracetamol-wvvzznhsf
+98. How frequently do vulnerabilites affect TLS on Android? - item?id=45355676
+99. Tunn – SSH tunnels made simple - https://github.com/strandnerd/tunn
+100. The Magnus Archives Transcripts - https://snarp.github.io/magnus_archives_transcripts/

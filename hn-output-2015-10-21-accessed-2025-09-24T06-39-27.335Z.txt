@@ -1,0 +1,100 @@
+1. Twitter CEO Dorsey Apologizes to Developers - http://techcrunch.com/2015/10/21/twitter-ceo-dorsey-apologizes-to-developers-says-he-wants-to-reset-relations/
+2. BMW i8 in WebGL - http://car.playcanvas.com
+3. YouTube Red, a $9.99 Site-Wide Ad-Free Subscription with Play Music - http://techcrunch.com/2015/10/21/youtube-red/
+4. Apple tells U.S. judge 'impossible' to unlock new iPhones - http://www.reuters.com/article/2015/10/20/us-apple-court-encryption-idUSKCN0SE2NF20151020
+5. 23andMe meets FDA standards, adds back wellness reports - http://blog.23andme.com/23andme-and-you/a-new-23andme-experience/
+6. Jepsen: Distributed Systems Safety Analysis - http://jepsen.io/
+7. Yahoo Logo ASCII Animation in 462 bytes of C (2011) - http://www.a1k0n.net/2011/06/26/obfuscated-c-yahoo-logo.html
+8. Show HN: Metabase, an open-source business intelligence tool - http://www.metabase.com/
+9. Microsoft Surface Pro 4 Review - http://www.anandtech.com/show/9727/the-microsoft-surface-pro-4-review-raising-the-bar
+10. W^X enabled in OpenBSD Firefox port - http://undeadly.org/cgi?action=article&sid=20151021191401
+11. CIA Director John Brennan emails - https://wikileaks.org/cia-emails/
+12. Academics sharing paywalled papers with a codeword on Twitter - http://www.bbc.co.uk/news/blogs-trending-34572462
+13. Has It Become Impossible to Prosecute White-Collar Crime? - http://www.bloomberg.com/news/articles/2015-10-21/has-it-become-impossible-to-prosecute-white-collar-crime-
+14. Sabotage - https://samgentle.com/posts/2015-10-18-sabotage
+15. Getting a full PDF from a DRM-encumbered online textbook - http://vgel.me/posts/cracking-online-textbook/
+16. Automatic SIMD vectorization support in PyPy - http://morepypy.blogspot.com/2015/10/automatic-simd-vectorization-support-in.html
+17. Nim for scientific computing: Back to the future - http://rnduja.github.io/2015/10/21/scientific-nim/
+18. Teen Who Hacked CIA Director’s Email Tells How He Did It - http://www.wired.com/2015/10/hacker-who-broke-into-cia-director-john-brennan-email-tells-how-he-did-it/
+19. How the war on drugs creates violence - https://www.washingtonpost.com/opinions/how-the-war-on-drugs-creates-violence/2015/10/16/6de57a76-72b7-11e5-9cbb-790369643cf9_story.html
+20. Requestdiff – Send two HTTP requests and visualize any differences - http://requestdiff.com/
+21. The Collapse of the US-EU Safe Harbor - http://blogs.microsoft.com/on-the-issues/2015/10/20/the-collapse-of-the-us-eu-safe-harbor-solving-the-new-privacy-rubiks-cube/
+22. Docker Acquires Tutum - http://blog.docker.com/2015/10/docker-acquires-tutum/
+23. Negative Gross Margins - http://avc.com/2015/10/negative-gross-margins/
+24. Western Digital agrees to buy SanDisk for about $19B - http://www.bloomberg.com/news/articles/2015-10-21/western-digital-agrees-to-buy-sandisk-for-about-19-billion
+25. Xamarin acquires RoboVM - https://robovm.com/robovm-acquired-by-world-leader-in-cross-platform-mobile-xamarin/
+26. Ask HN: Discuss burnout with boss? - item?id=10428008
+27. Starbucks and Fiat Chrysler tax deals 'illegal' in Europe - http://www.bbc.com/news/business-34591476
+28. Frequent Social Networking Associated with Poor Functioning Among Children [pdf] - http://online.liebertpub.com/doi/pdf/10.1089/cyber.2015.0055
+29. Sam Altman's Twitter AMA - https://www.hashfav.com/page/HashFavTech/1593
+30. Unofficial uBeam FAQ - http://www.eevblog.com/forum/projects/the-ubeam-faq/
+31. Thoughts on Campus, a Failed Housing Startup - http://rossgarlick.com/2015/07/14/thoughts-on-campus-the-failed-startup-that-almost-reinvented-how-we-live/
+32. Hubzilla: Build a community of connected websites - http://hubzilla.org/
+33. Rust-Bio – Bioinformatics library for Rust - https://rust-bio.github.io/
+34. Neurological evidence for chaos in the nervous system is growing (2014) - http://nautil.us/issue/15/turbulence/your-brain-is-on-the-brink-of-chaos
+35. San Francisco May Let Bicyclists Yield at Stop Signs - http://www.nytimes.com/2015/10/21/us/san-francisco-may-let-bicyclists-yield-at-stop-signs.html?hp&action=click&pgtype=Homepage&module=photo-spot-region&region=top-news&WT.nav=top-news
+36. Venmo Five Years Ago - https://medium.com/@thenewb/venmo-five-years-ago-3d361563b98f
+37. Histography – Timeline of History - http://histography.io
+38. Khan Academy's React style guide - https://github.com/Khan/style-guides/blob/master/style/react.md
+39. Ken Taylor, Legendary Canadian Diplomat, Dies at 81 - http://www.theatlantic.com/international/archive/2015/10/ken-taylor-iran-canada/410827/?single_page=true
+40. Fedora opens up to bundling - https://lwn.net/SubscriberLink/660429/b749a0be5843e95a/
+41. DNSSEC is Open for Beta - https://blog.cloudflare.com/dnssec-is-open-for-beta/
+42. Secret Code in Color Printers Lets Government Track You (2005) - https://www.eff.org/press/archives/2005/10/16
+43. The Right Thing? - http://prog21.dadgum.com/211.html
+44. Reading all the small print on the Internet for a week - http://www.theguardian.com/technology/2015/jun/15/i-read-all-the-small-print-on-the-internet
+45. Ligra: A Lightweight Graph Processing Framework for Shared Memory - http://www.eecs.berkeley.edu/~jshun/ligra.html
+46. Yahoo Talent Exodus Accelerates as Marissa Mayer’s Turnaround Flounders - https://recode.net/2015/10/19/yahoo-talent-exodus-accelerates-as-marissa-mayers-turnaround-flounders/
+47. Top curling teams say they won't use high-tech brooms - http://www.cbc.ca/news/canada/manitoba/top-curling-teams-say-they-won-t-use-high-tech-brooms-1.3274903
+48. The Lost History of Gay Adult Adoption - http://www.nytimes.com/2015/10/19/magazine/the-lost-history-of-gay-adult-adoption.html?mod=e2this&_r=0
+49. Elevated levels of diesel compounds in groundwater derive from surface activity - http://www.pnas.org/content/early/2015/10/07/1511474112.abstract
+50. Python bytecode is heavily trusted by CPython - https://utcc.utoronto.ca/~cks/space/blog/python/BytecodeIsTrusted
+51. Control your server using Whatsapp - http://funnybretzel.com/control-your-server-using-whatsapp/
+52. British Library offers over 1M free vintage images for download - http://www.digitalartsonline.co.uk/news/illustration/british-library-offers-over-1-million-free-vintage-images-for-download/
+53. Overcomplexifying, Underdelivering - http://spectrum.ieee.org/static/overcomplexifying-underdelivering
+54. How we’re changing Colombia through open-source communities - https://medium.com/colombia-dev/how-we-re-changing-colombia-through-open-source-communities-and-why-we-need-your-help-7825a9fd020e
+55. Show HN: Clojure for the Brave and True – now free online - http://www.braveclojure.com/?updated
+56. A Former Twitch Employee Has One of the Most Reproduced Faces - http://fivethirtyeight.com/features/why-a-former-twitch-employee-has-one-of-the-most-reproduced-faces-ever/
+57. Carbon nanotubes found in children’s lungs - https://www.newscientist.com/article/dn28370-carbon-nanotubes-found-in-childrens-lungs-for-the-first-time/
+58. Sunscreen Ingredient Damages Coral Reefs - http://www.washingtonpost.com/news/energy-environment/wp/2015/10/20/after-sunscreen-protects-humans-it-massacres-coral-reefs/
+59. Humanize the Craft of Building Interactive Computer Applications [pdf] - http://melconway.com/humanize-the-craft.pdf
+60. The Scientific Basis of Cryonics - http://www.technologyreview.com/view/542601/the-science-surrounding-cryonics/
+61. The staggering impact of IT systems gone wrong - http://spectrum.ieee.org/static/the-staggering-impact-of-it-systems-gone-wrong
+62. Rebuilding Segment's Infrastructure with Docker, ECS, and Terraform - http://highscalability.com/blog/2015/10/19/segment-rebuilding-our-infrastructure-with-docker-ecs-and-te.html
+63. Police Leaders Join Call to Cut Prison Rosters - http://www.nytimes.com/2015/10/21/us/police-leaders-join-call-to-cut-prison-rosters.html
+64. The rise of mixed precision arithmetic - https://nickhigham.wordpress.com/2015/10/20/the-rise-of-mixed-precision-arithmetic/
+65. Fruit-sorting robot ‘will disrupt the industry’ - http://www.drivesncontrols.com/news/fullstory.php/aid/4938/Fruit-sorting_robot__91will_disrupt_the_industry_92.html
+66. Theorists Draw Closer to Perfect Coloring - https://www.quantamagazine.org/20151020-perfect-graph-coloring/
+67. Moebius and the Key of Dreams - http://www.theparisreview.org/blog/2015/10/21/moebius-and-the-key-of-dreams/
+68. Show HN: 10MinuteStorage – Filesharing simplified with three words - https://www.10minutestorage.com
+69. Giants of IT. The giants on whose shoulders we stand. One each day - http://www.giantsofit.org/1/charles-babbage
+70. When and Where Do You Stress? Ambitious Project Aims to Map Daily Life - http://commonhealth.wbur.org/2015/07/boston-stress-study
+71. Rollup.js: A next-generation JavaScript module bundler - http://rollupjs.org
+72. How to Save an Ancient Language Before It Disappears - http://narrative.ly/super-subcultures/how-to-save-an-ancient-language-before-it-disappears-forever/
+73. Magic Leap reveals more details about its technology - http://www.engadget.com/2015/10/20/magic-leap-wsjdlive/
+74. An Early-20th-Century British Map of the Global Drug Trade - http://www.slate.com/blogs/the_vault/2015/10/19/history_of_the_drug_trade_map_of_drug_trade_in_the_early_20th_century.html
+75. Animals Spy a New Enemy: Drones - http://www.nytimes.com/2015/10/20/science/animals-spy-a-new-enemy-drones.html?action=click&contentCollection=science&region=rank&module=package&version=highlights&contentPlacement=1&pgtype=sectionfront&_r=0
+76. Luciding – Induce Lucid Dreaming Through Transcranial Stimulation - https://luciding.com/#/
+77. Quantum Theory Experiment Said to Prove ‘Spooky’ Interactions - http://www.nytimes.com/2015/10/22/science/quantum-theory-experiment-said-to-prove-spooky-interactions.html
+78. Introducing OpenSWR: High performance software rasterizer - http://lists.freedesktop.org/archives/mesa-dev/2015-October/097816.html
+79. Thomas Browne, who coined “hallucination” and “suicide” - http://www.newyorker.com/books/page-turner/doubting-thomas
+80. Heroku US region is facing platform wide routing issues - https://status.heroku.com/incidents/820
+81. Pocket FM - http://www.pocket-fm.com/
+82. Cell (microprocessor) - https://en.wikipedia.org/wiki/Cell_(microprocessor)
+83. Hilbert's paradox of the Grand Hotel - https://en.wikipedia.org/wiki/Hilbert%27s_paradox_of_the_Grand_Hotel
+84. The Fats You Don’t Need to Fear, and the Carbs That You Do - http://well.blogs.nytimes.com/2015/10/19/the-fats-you-dont-need-to-fear-and-the-carbs-that-you-do/?mabReward=A4&action=click&pgtype=Homepage&region=CColumn&module=Recommendation&src=rechp&WT.nav=RecEngine&_r=0
+85. New whistleblower steps forward on drones - http://www.chelseamanning.org/featured/dronepapers
+86. Running a 60fps web application using a RaspberryPi - https://github.com/zehfernandes/rpi-webapplication
+87. Apple's auto ambitions sideswipe electric motorcycle startup - http://www.reuters.com/article/2015/10/19/apple-motorcycle-idUSL1N12F2JZ20151019
+88. FDA Clears 23andMe for All Health and Carrier Traits Testing - http://techcrunch.com/2015/10/20/fda-clears-23andme-for-all-health-and-carrier-traits-reports/
+89. Inside Snapchat's Entertainment Empire - http://www.fastcompany.com/3051612/innovation-agents/media-tech-and-advertising-to-snapchat-i-aint-afraid-of-no-ghost
+90. Prices for starter homes are crowding out millennials - http://www.bloomberg.com/news/articles/2015-10-20/prices-for-starter-homes-are-crowding-out-millennials
+91. Reverse Traceroute (2010) [pdf] - http://www-bcf.usc.edu/~katzbass//papers/reverse_traceroute-nsdi10.pdf
+92. Female violinist exposes 10 years of lewd, fetishizing messages from men online - http://www.washingtonpost.com/news/morning-mix/wp/2015/10/21/a-woman-violinist-exposes-10-years-of-lewd-fetishizing-messages-from-men-online/?tid=sm_fb
+93. Rimbaud in the Alps (1878) - http://www.theparisreview.org/blog/2015/10/20/rimbaud-ascends-the-alps/
+94. Tech Industry Trade Groups Are Coming Out Against CISA - https://www.eff.org/deeplinks/2015/10/tech-industry-trade-groups-are-coming-out-against-cisa-we-need-individual
+95. Show HN: Finite Automata Simulator Written in QT/Graphviz - https://github.com/wkoszek/flviz
+96. Show HN: Delta – view your Git split diffs in the browser - http://delta.octavore.com
+97. Live Now: Stephen Wolfram LiveCoding - https://www.livecoding.tv/stephen_wolfram/
+98. Darwin regarded sympathy as the most important human adaptation - http://evonomics.com/jeff-bezos-got-darwinism-all-wrong/
+99. Show HN: WebRPC – a simple alternative to REST and SOAP - https://github.com/gk-brown/WebRPC
+100. A Riddle Wrapped in an Enigma [pdf] - http://eprint.iacr.org/2015/1018.pdf
