@@ -175,6 +175,8 @@ async function sortNewest(page, limit = 100, verbose = false) { // no printout b
   let processed = 0;
   let finalValid = true;  // used for final output
   const invalidEntries = [];  // tracks number of incorrect chronological entries by rank
+  const rl = readline.createInterface({ input, output });
+  const report = [];  // will store lines to write to file
 
   while (processed < limit) {
     // Specify number of entries needed on current page(max 30)
@@ -189,6 +191,7 @@ async function sortNewest(page, limit = 100, verbose = false) { // no printout b
     if (verbose) console.log(`Extracted ${entries.length} entries.`);
 
     for (const entry of entries) {
+      report.push(`${entry.rank}. ${entry.title} - ${entry.link ?? '(no link)'}`);
       if (prevEntry !== null) {
         const isValid = validateOrder(prevEntry, entry, verbose);  // returns boolean
         if (verbose) console.log(`Entry ${entry.rank} result: ${isValid}`);
@@ -220,17 +223,28 @@ async function sortNewest(page, limit = 100, verbose = false) { // no printout b
       break;
     }
   }
-
   // Final output
   console.log(`Process complete. Validated ${processed} of ${limit} entries with ${invalidEntries.length} chronological errors.`);
+  let fin;
   if (finalValid) {
+    fin = true;
     console.log(`All ${limit} entries are sorted newest to oldest!`);
-    return true;
   } else {
+    fin = false;
     console.log(`${invalidEntries.length} entries are not correctly sorted.`);
     console.log(`Invalid article ranks: ${invalidEntries}`);
-    return false;
   }
+  const response = await rl.question(`Please confirm if you would like to write out data[y/n]: `);
+  if (response.charAt(0).toLowerCase() === 'y') {
+    const stamp = new Date().toISOString().replace(/[:]/g, '-'); // safe for filenames
+    const file = `hn-output-newestpg-accessed-${stamp}.txt`;
+    await writeLines(file, report);
+    console.log(`Report saved to ${file}`);
+  } else {
+    console.log('Report not saved.');
+  }
+
+  return fin;
 }
 
 
@@ -293,28 +307,13 @@ async function showPastDate(page, limit=50, date, verbose) {
   // Final output
   console.log(`Process complete. Validated ${processed} of ${limit} requested entries.`);
   const response = await rl.question(`Please confirm if you would like to write out data[y/n]: `);
-  try {
-    switch(response.toLowerCase()) {
-      case 'yes':
-      case 'y': {
-        const stamp = new Date().toISOString().replace(/[:]/g, '-'); // safe for filenames
-        const file = `hn-output-${date}-accessed-${stamp}.txt`;
-        await writeLines(file, report);
-        console.log(`Report saved to ${file}`);
-        break;
-      }
-      case 'no':
-      case 'n': {
-        console.log(`Report not saved.`);
-        break;
-      }
-      default: {
-        console.log('Undefined input; Defaulting print to console...');
-        console.log(`${report}`);        
-      }
-    }
-  } catch(err) {
-    console.error('Command failed: ', err || err?.message);
+  if (response.charAt(0).toLowerCase() === 'y') {
+    const stamp = new Date().toISOString().replace(/[:]/g, '-'); // safe for filenames
+    const file = `hn-output-${date}-accessed-${stamp}.txt`;
+    await writeLines(file, report);
+    console.log(`Report saved to ${file}`);
+  } else {
+    console.log('Report not saved.');
   }
 }
 
@@ -328,8 +327,12 @@ async function showPastDate(page, limit=50, date, verbose) {
  * @returns { cmd, args }       - Command token and mapping of args.
  */
 function parseCommand(line) {
+  // Check type
+
+  const FLAG_REGEX = /^--([a-z]*)=([^\s]+)$/i;
+  if (typeof line !== 'string') return { cmd: '', args: {} };
   // Split user input into normalized token array
-  const tokens = (line || '').trim().split(/\s+/).filter(Boolean);
+  const tokens = (line || '').trim().split(' ').filter(Boolean);
   const [first, ...rest] = tokens;
 
   // Separates command from flags
@@ -338,10 +341,16 @@ function parseCommand(line) {
   // Loop to store normalized parsed flags
   const args = {};
   for (const token of rest) {
-    if (token.startsWith('--') && token.includes('=')) {  // OR regex '/^--[^=]+=.*/.test(token)' for exact format
-      const [k, v] = token.slice(2).split('=');
-      args[k] = v;
+    const check = FLAG_REGEX.exec(token);
+    if (!check) {  // invalid flag
+      console.log(`Invalid flag format. All argument flags must be written as '--key=value'.`);
+      continue;
     }
+    const [, k, v] = check;
+    if (k in args) {
+      console.log(`Duplicate flag '${k}'. Updating value to ${v}...`);
+    }
+    args[k] = v;
   }
   return { cmd, args };
 }
@@ -387,34 +396,80 @@ function setupBrowser(line) {
 }
 
 /**
- * Ensures chosen date is within scope. (2/19/2007->12/31/2024)
- * IMPORTANT: SOME EDGE CASE DATES MAY STILL NOT BE COVERED WITH CURRENT IMPLEMENTATION
- *    - i.e. Specifying 31st day of month with 30 days may cause error
+ * Ensures chosen date is within scope. (2/19/2007->yesterday's date).
  * 
  * @param {string} date   - Date to validate
  * @returns {boolean}
  */
 function valiDate(date) {
-    // Parse inputted date and validate its scope
-    if (!date) return false;
-    const dateList = date.split('-');
-    const year = Number(dateList[0]);
-    if (!year || year < 2007 || year > 2024) {
-      console.log(`Year ${year} invalid.`);
-      return false; 
-    }
-    const month = Number(dateList[1]);
-    if (!month || month < 1 || month > 12) {
-      console.log(`Month ${month} invalid.`);
-      return false;
-    }
-    const day = Number(dateList[2]);
-    if (!day || day < 1 || day > 31) {
-      console.log(`Day ${day} invalid.`);
-      return false;
-    }
-    return true;
 
+  // Extremely simple calendar object to validate a day is valid
+  const monthMaxes = {
+    1: 31, 2: 28, 3: 31,
+    4: 30, 5: 31, 6: 30,
+    7: 31, 8: 31, 9: 30,
+    10: 31, 11: 30, 12: 31
+  };
+  // Leap year helper
+  function isLeapYear(year) {
+    return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+  }
+  // Main checks
+  if (typeof date !== 'string') {
+    console.log('Date must be a string in the format YYYY-MM-DD.');
+    return false;
+  }
+
+  // Ensure exact formatting correctness
+  const dateMatch = date.match(/^(\d{4})-(\d{2})-(\d{2})$/);   // regex for 'YYYY-MM-DD'
+  if (!dateMatch) {
+    console.log('Invalid format.  Use EXACTLY: --date=YYYY-MM-DD.');
+    return false;
+  }
+  // Extract date for validation
+  const [, yStr, moStr, dStr] = dateMatch;
+  const year = Number(yStr);
+  const month = Number(moStr);
+  const day = Number(dStr);
+
+  // Basic integer checks
+  if (!Number.isInteger(year)) {
+    console.log(`Year must be a number.`);
+    return false;
+  } else if (!Number.isInteger(month)) {
+    console.log(`Month must be a number.`);
+    return false;
+  } else if (!Number.isInteger(day)) {
+    console.log(`Day must be a number.`);
+    return false;
+  }
+  if (month < 1 || month > 12) {
+    console.log(`Month must be between 01 and 12.`)
+    return false;
+  }
+  // Handle month edge cases/leap year
+  const maxDay = (month === 2 && isLeapYear(year)) ? 29 : monthMaxes[month];
+  if (day < 1 || day > maxDay) {
+    console.log(`Day ${dStr} does not exist in ${yStr}-${moStr}.`);
+    return false;
+  }
+
+  // Set min/max date range (2/19/2007->yesterday)
+  const min = new Date(2007, 1, 19);
+  min.setHours(0, 0, 0, 0); // set to midnight
+  const max = new Date();
+  max.setHours(0, 0, 0, 0);
+  max.setDate(max.getDate() - 1); 
+
+  // Get user input date and validate
+  const userDate = new Date(year, month - 1, day); // Months are 0-indexed
+  userDate.setHours(0, 0, 0, 0);
+  if (userDate < min || userDate > max) {
+    console.log(`Date out of range. Must be between ${min.toLocaleDateString} and ${max.toLocaleDateString}.`);
+    return false;
+  }
+
+return true;
 }
 
 //------------------------------------------ MAIN UI FUNCTION ------------------------------------------ 
@@ -477,13 +532,12 @@ function valiDate(date) {
             break;
           }
           case 'past': {
-            let pastLimit = 50;
-            let pastDate = '2020-01-01';  // arbitrary default date; earliest date 2/19/2007
+            let pastLimit = 100;  // default
             if (args.limit && args.limit >= 1 && args.limit <= 200) {
               pastLimit = args.limit;
               console.log(`Limit set to ${args.limit}`);
             } else {
-              console.log(`Limit undefined or out of scope. Defaulting to 50...`);
+              console.log(`Limit undefined or out of scope. Defaulting to 100...`);
             }
             const verbose = args.verbose === 'true'; // default is false
             console.log(`Verbose mode set to ${verbose}`);
@@ -491,8 +545,18 @@ function valiDate(date) {
             if (valid) {
               pastDate = args.date;
             } else {
-              console.log(`Date undefined or out of scope. Defaulting to 2020-01-01...`);
+              let runNew = await rl.question(`Date undefined or out of scope. Default to newest?[y/n]: `);
+              runNew = runNew.toLowerCase();
+              if (!runNew || runNew.charAt(0) === 'y') {
+                console.log(`Running validation of newest ${pastLimit} articles instead...`);
+                await sortNewest(page, pastLimit, verbose);
+                break;                
+              } else {
+                console.log(`Action cancelled.  Taking you back home...`);
+                break;
+              }
             }
+            // Valid command
             console.log(`Initial date set to ${pastDate}.`);
             await showPastDate(page, pastLimit, pastDate, verbose);
             break;
